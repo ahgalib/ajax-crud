@@ -61,6 +61,43 @@
 				})
 			}
 			loadtable();
+
+			$("#submit").on("click",function(e){
+				e.preventDefault();
+				let fName = $("#f-name").val();
+				let lName = $("#l-name").val();
+				if(fName == "" || lName == ""){
+					$("#err-msg").html("please fill the full form").slideDown();
+					$("#succ-msg").slideUp();
+					setTimeout(function(){
+					$("#err-msg").slideUp();
+					},2000);
+				}
+				else{
+					$.ajax({
+					url:"ajax-page-insert.php",
+					type:"POST",
+					data:{Fname:fName,Lname:lName},
+					success:function(data){
+						if(data == 1){
+							loadtable();
+							$("#form").trigger("reset");
+							$("#succ-msg").html("insert data successfull").slideDown();
+							$("#err-msg").slideUp();
+							setTimeout(function(){
+								$("#succ-msg").slideUp();
+							},2000);
+						}else{
+							$("#err-msg").html("insert data NOT successfull").slideDown();
+							$("#succ-msg").slideUp();
+							setTimeout(function(){
+								$("#err-msg").slideUp();
+							},2000);
+						}
+					}
+				})
+				}
+			});
 		});
 	</script>
 </body>
