@@ -1,0 +1,57 @@
+#header{
+	background: lightblue;
+	padding:4px;
+
+}
+
+#button-div{
+	background: lightgreen;
+	text-align:center;
+	padding:8px;
+	
+
+}
+#load-btn{
+	font-size:20px;
+}
+
+#f-div{
+	background: gray;
+	text-align: center;
+}
+
+#model-div{
+	background: rgba(0,0,0,0.7);
+	position: fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	z-index:100;
+	display: none;
+}
+#model h1{
+	border-bottom:2px solid black;
+}
+#model-form{
+	background: white;
+	width:30%;
+	position: relative;
+	top:20%;
+	left: 30%;
+	padding:15px;
+	border-radius:10px;
+}
+#close-btn{
+	background: red;
+	color:white;
+	width:36px;
+	height:36px;
+	line-height: 36px;
+	text-align: center;
+	border-radius: 50%;
+	position: absolute;
+	top:-18px;
+	right:-18px;
+	cursor:pointer;
+}
