@@ -150,6 +150,54 @@
 					}
 				})
 			});
+
+			$("#search").on('keyup',function(){
+				let searchTerm = $(this).val();
+				$.ajax({
+					url: "live-search-data.php",
+					type:"POST",
+					data: {search:searchTerm},
+					success:function(data){
+						$("#table-div").html(data);
+					}
+				})
+			});
+
+			//Multipart delete
+			$("#multi-delet").on("click",function(){
+				var arr = [];
+				$(":checkbox:checked").each(function(key){
+					arr[key] = $(this).val();
+				})
+				//console.log(arr);
+				if(arr.length ==0){
+					$("#err-msg").html("data delet unsuccessfull").slideDown();
+					$("#succ-msg").slideUp();
+					setTimeout(function(){
+						$("#err-msg").slideUp();
+					},2000);
+				}else{
+					$.ajax({
+					url:"delet-multi.php",
+					type:"POST",
+					data:{did:arr},
+					success:function(data){
+						//console.log(data);
+						if(data == 1){
+							loadtable();
+							$("#succ-msg").html("delete success").slideDown();
+							$("#err-msg").slideUp();
+							setTimeout(function(){
+								$("#succ-msg").slideUp();
+							},3000);
+						}else{
+							$("#err-msg").html("data delet unnnnnsuccessfull").slideDown(3000);
+							$("#succ-msg").slideUp();
+						}
+					}
+					})
+				}	
+			});
 		});
 	</script>
 </body>
