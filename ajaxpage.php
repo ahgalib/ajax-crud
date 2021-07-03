@@ -98,6 +98,58 @@
 				})
 				}
 			});
+
+			$(document).on("click",".edit-btn",function(){
+				$("#model-div").show();
+				let eId = $(this).data("eid");
+				$.ajax({
+					url:"edit-ajax2.php",
+					type: "POST",
+					data:{Idd:eId},
+					success:function(data){
+						$("#model-form table").html(data);
+					}
+				})
+			})
+			$("#close-btn").on("click",function(){
+				$("#model-div").hide();
+			})
+			$(document).on("click","#Save",function(){
+					let fid = $("#idname").val();
+					let fN = $("#Fname").val();
+					let lN = $("#Lname").val();
+					$.ajax({
+					url:"edit-save-ajax2.php",
+					type: "POST",
+					data:{Id:fid,firstN:fN,lastN:lN},
+					success:function(data){
+						if(data == 1){
+							loadtable();
+							$("#model-div").hide();
+						}else{
+							alert("fail");
+						}
+					}
+				})
+			});
+
+			$(document).on("click",".del-btn",function(){
+				let bt = $(this).data("did");
+				let element = this;
+				$.ajax({
+					url:"delet-ajax2.php",
+					type: "POST",
+					data:{delBut:bt},
+					success:function(data){
+						if(data == 1){
+							//loadtable();
+							$(element).closest("tr").fadeOut();
+						}else{
+							alert("falil faila kag al");
+						}
+					}
+				})
+			});
 		});
 	</script>
 </body>
